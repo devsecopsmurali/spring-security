@@ -1,0 +1,31 @@
+pipeline{
+    agent any
+     environment{
+        NEXUS_RELEASE_REPO ="mylibs-Release"
+        NEXUS_SNAP_REPO="mylibs-Snapshot"
+        NEXUS_CENTRAL_REPO ="mylibs-maven-central"
+        NEXUS_GRP_REPO="mylibs-Group"
+        NEXUS_USER="admin"
+        NEXUS_PASS="admin"
+        NEXUS_VERSION = "nexus3"
+        NEXUS_PROTOCOL = "http"
+        NEXUSPORT="8081"
+        NEXUSIP = "18.234.106.112"
+      ARTVERSION = "${env.BUILD_ID}"
+    }
+
+    stages{
+        stage('Checkout'){
+           steps{
+                git branch: 'main', url: 'https://github.com/devsecopsmurali/spring-security.git'
+            }
+
+        }
+        stage('Maven-Build'){
+           
+              steps{
+                sh 'mvn -s settings.xml -DskipTests clean install'
+            }
+        }
+    }
+}
