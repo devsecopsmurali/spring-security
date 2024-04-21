@@ -27,12 +27,12 @@ pipeline{
               steps{
                 sh 'mvn -s settings.xml -DskipTests clean install'
             }
-            post {
-                success {
-                    echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
-                }
-            }
+            // post {
+            //     success {
+            //         echo 'Now Archiving...'
+            //         archiveArtifacts artifacts: '**/target/*.war'
+            //     }
+            // }
         }
          stage("Publish to Nexus Repository Manager") {
             steps {
