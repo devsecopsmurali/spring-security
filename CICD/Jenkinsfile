@@ -11,7 +11,8 @@ pipeline{
         NEXUS_PROTOCOL = "http"
         NEXUSPORT="8081"
         NEXUSIP = "18.234.106.112"
-      ARTVERSION = "${env.BUILD_ID}"
+        ARTVERSION = "${env.BUILD_ID}"
+        NEXUS_CREDENTIAL_ID ="nexuslogin"
     }
 
     stages{
@@ -47,9 +48,9 @@ pipeline{
                             nexusVersion: NEXUS_VERSION,
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
-                            groupId: NEXUS_REPOGRP_ID,
+                            groupId: NEXUS_GRP_REPO,
                             version: ARTVERSION,
-                            repository: NEXUS_REPOSITORY,
+                            repository: NEXUS_RELEASE_REPO,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
                                 [artifactId: pom.artifactId,
